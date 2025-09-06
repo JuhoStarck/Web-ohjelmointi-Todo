@@ -62,13 +62,6 @@ function App() {
         {
           tasks.map(item => (
             <Row item={item} key={item.id} deleteTask={deleteTask} />
-            
-            /*<li key={item.id}>
-              {item.description}
-              <button className='delete-button' onClick={() => deleteTask(item.id)}>
-                Delete
-              </button>
-            </li>*/
           ))
         }
       </ul>
