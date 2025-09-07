@@ -1,7 +1,7 @@
 import { pool } from '../helper/db.js'
 import { auth } from '../helper/auth.js'
 import { Router } from 'express'
-import { getTasks } from '../controllers/TaskController.js'
+import { getTasks, postTask } from '../controllers/TaskController.js'
 
 const router = Router()
 
@@ -17,6 +17,8 @@ router.get('/', (req, res, next) => {
     })
 })
 */
+router.post("/create", postTask)
+/*
 router.post('/create', auth,(req, res, next) => {
     const { task } = req.body
 
@@ -35,7 +37,7 @@ router.post('/create', auth,(req, res, next) => {
         res.status(201).json({id: result.rows[0].id, description: task.description})
     })
 })
-
+*/
 router.delete('/delete/:id', auth,(req, res, next) => {
     const { id } = req.params
 
