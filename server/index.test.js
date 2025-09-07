@@ -37,7 +37,7 @@ describe("Testing basic database functionality", () => {
             method: "delete",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token
+                Authorization: token
             }
         })
         const data = await response.json()

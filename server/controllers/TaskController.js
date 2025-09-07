@@ -1,5 +1,5 @@
 import { ApiError } from "../helper/ApiError.js"
-import { insertTask, selectAllTasks } from "../models/Task.js"
+import { insertTask, selectAllTasks, deleteTask } from "../models/Task.js"
 
 const getTasks = async (req, res, next) => {
     try {
@@ -29,4 +29,24 @@ const postTask = async(req, res, next) => {
     }
 }
 
-export { getTasks, postTask }
+const removeTask = async(req, res, next) => {
+    const { id } = req.params
+
+    try {
+        const result = await deleteTask(id)
+
+        if(result.rowCount === 0) {
+            return next(new ApiError('Task not found', 404))
+        }
+
+        return res.status(200).json({
+            id//: result.rows[0].id,
+            //description: result.rows[0].description
+        })
+    } catch (error) {
+        console.error("Delete task error: ", error)
+        return next(error)
+    }
+}
+
+export { getTasks, postTask, removeTask }
